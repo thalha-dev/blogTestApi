@@ -1,7 +1,5 @@
 package com.its.blogTestApi.entity;
 
-import java.sql.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,20 +8,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.sql.Date;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "blog")
 public class BlogEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  private Long Id;
+  private Long id;
 
   @Column(name = "blog_title")
   private String blogTitle;
@@ -41,4 +34,65 @@ public class BlogEntity {
   @JoinColumn(name = "author_id", referencedColumnName = "id")
   private Long authorId;
 
+  // Constructors
+  public BlogEntity() {
+
+  }
+
+  public BlogEntity(String blogTitle, String blogContent, Date blogCreatedDate, Date blogModifiedDate, Long authorId) {
+    this.blogTitle = blogTitle;
+    this.blogContent = blogContent;
+    this.blogCreatedDate = blogCreatedDate;
+    this.blogModifiedDate = blogModifiedDate;
+    this.authorId = authorId;
+  }
+
+  // Getters and Setters
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getBlogTitle() {
+    return blogTitle;
+  }
+
+  public void setBlogTitle(String blogTitle) {
+    this.blogTitle = blogTitle;
+  }
+
+  public String getBlogContent() {
+    return blogContent;
+  }
+
+  public void setBlogContent(String blogContent) {
+    this.blogContent = blogContent;
+  }
+
+  public Date getBlogCreatedDate() {
+    return blogCreatedDate;
+  }
+
+  public void setBlogCreatedDate(Date blogCreatedDate) {
+    this.blogCreatedDate = blogCreatedDate;
+  }
+
+  public Date getBlogModifiedDate() {
+    return blogModifiedDate;
+  }
+
+  public void setBlogModifiedDate(Date blogModifiedDate) {
+    this.blogModifiedDate = blogModifiedDate;
+  }
+
+  public Long getAuthorId() {
+    return authorId;
+  }
+
+  public void setAuthorId(Long authorId) {
+    this.authorId = authorId;
+  }
 }

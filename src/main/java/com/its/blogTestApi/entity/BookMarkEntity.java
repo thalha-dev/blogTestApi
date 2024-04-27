@@ -9,13 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "user_bookmarks", uniqueConstraints = { @UniqueConstraint(columnNames = { "user_id", "blog_id" }) })
 public class BookMarkEntity {
@@ -30,5 +24,40 @@ public class BookMarkEntity {
 
   @ManyToOne(targetEntity = BlogEntity.class)
   @JoinColumn(name = "blog_id", referencedColumnName = "id")
-  private Long authorId;
+  private Long blogId;
+
+  // Constructors
+  public BookMarkEntity() {
+
+  }
+
+  public BookMarkEntity(Long userId, Long blogId) {
+    this.userId = userId;
+    this.blogId = blogId;
+  }
+
+  // Getters and Setters
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
+
+  public Long getBlogId() {
+    return blogId;
+  }
+
+  public void setBlogId(Long blogId) {
+    this.blogId = blogId;
+  }
 }
