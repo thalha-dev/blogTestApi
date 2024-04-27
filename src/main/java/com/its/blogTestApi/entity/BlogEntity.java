@@ -34,12 +34,14 @@ public class BlogEntity {
   @JoinColumn(name = "author_id", referencedColumnName = "id")
   private Long authorId;
 
-  // Constructors
   public BlogEntity() {
-
+    super();
   }
 
-  public BlogEntity(String blogTitle, String blogContent, Date blogCreatedDate, Date blogModifiedDate, Long authorId) {
+  public BlogEntity(Long id, String blogTitle, String blogContent, Date blogCreatedDate, Date blogModifiedDate,
+      Long authorId) {
+    super();
+    this.id = id;
     this.blogTitle = blogTitle;
     this.blogContent = blogContent;
     this.blogCreatedDate = blogCreatedDate;
@@ -47,7 +49,6 @@ public class BlogEntity {
     this.authorId = authorId;
   }
 
-  // Getters and Setters
   public Long getId() {
     return id;
   }
@@ -95,4 +96,5 @@ public class BlogEntity {
   public void setAuthorId(Long authorId) {
     this.authorId = authorId;
   }
+
 }

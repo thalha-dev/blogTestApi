@@ -30,20 +30,6 @@ public class UserEntity {
   @Column(name = "user_age")
   private Integer userAge;
 
-  // Constructors
-  public UserEntity() {
-
-  }
-
-  public UserEntity(String userName, String userEmail, String pwd, String userRole, Integer userAge) {
-    this.userName = userName;
-    this.userEmail = userEmail;
-    this.pwd = pwd;
-    this.userRole = userRole;
-    this.userAge = userAge;
-  }
-
-  // Getters and Setters
   public Long getId() {
     return id;
   }
@@ -91,4 +77,19 @@ public class UserEntity {
   public void setUserAge(Integer userAge) {
     this.userAge = userAge;
   }
+
+  public UserEntity(Long id, String userName, String userEmail, String pwd, String userRole, Integer userAge) {
+    super();
+    this.id = id;
+    this.userName = userName;
+    this.userEmail = userEmail;
+    this.pwd = pwd;
+    this.userRole = userRole;
+    this.userAge = userAge;
+  }
+
+  public UserEntity() {
+    super();
+  }
+
 }

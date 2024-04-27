@@ -1,6 +1,9 @@
 package com.its.blogTestApi.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,4 +34,14 @@ public class UserServiceImpl implements UserService {
 
     return userRepository.save(newUser);
   }
+
+  @Override
+  public UserEntity login(Authentication authentication) {
+    String userEmail = authentication.getName();
+    Optional<UserEntity> userOpt = userRepository.findByUserEmail(userEmail);
+
+    // Handle the optional result
+    return userOpt.orElseThrow(() -> new IllegalArgumentException("User not found for email: " + userEmail));
+  }
+
 }

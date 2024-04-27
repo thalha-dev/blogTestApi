@@ -26,17 +26,6 @@ public class BookMarkEntity {
   @JoinColumn(name = "blog_id", referencedColumnName = "id")
   private Long blogId;
 
-  // Constructors
-  public BookMarkEntity() {
-
-  }
-
-  public BookMarkEntity(Long userId, Long blogId) {
-    this.userId = userId;
-    this.blogId = blogId;
-  }
-
-  // Getters and Setters
   public Long getId() {
     return id;
   }
@@ -60,4 +49,16 @@ public class BookMarkEntity {
   public void setBlogId(Long blogId) {
     this.blogId = blogId;
   }
+
+  public BookMarkEntity(Long id, Long userId, Long blogId) {
+    super();
+    this.id = id;
+    this.userId = userId;
+    this.blogId = blogId;
+  }
+
+  public BookMarkEntity() {
+    super();
+  }
+
 }
