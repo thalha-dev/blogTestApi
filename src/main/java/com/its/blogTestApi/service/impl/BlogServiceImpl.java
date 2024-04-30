@@ -29,13 +29,13 @@ public class BlogServiceImpl implements BlogService {
       throw new IllegalArgumentException("Title is required");
     }
 
-    if (blogForm.getBlogContent() == null) {
+    if (blogForm.getBlogContents() == null) {
       throw new IllegalArgumentException("Content is required");
     }
 
     BlogEntity newBlog = new BlogEntity();
     newBlog.setBlogTitle(blogForm.getBlogTitle());
-    newBlog.setBlogContent(blogForm.getBlogContent());
+    newBlog.setBlogContents(blogForm.getBlogContents());
     newBlog.setAuthorId(blogForm.getAuthorId());
     newBlog.setBlogCreatedDate(Date.valueOf(LocalDate.now()));
     newBlog.setBlogModifiedDate(Date.valueOf(LocalDate.now()));
