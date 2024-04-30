@@ -18,12 +18,18 @@ public class BookMarkEntity {
   @Column(name = "id")
   private Long id;
 
-  @ManyToOne(targetEntity = UserEntity.class)
-  @JoinColumn(name = "user_id", referencedColumnName = "id")
+  @ManyToOne
+  @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+  private UserEntity user;
+
+  @Column(name = "user_id")
   private Long userId;
 
-  @ManyToOne(targetEntity = BlogEntity.class)
-  @JoinColumn(name = "blog_id", referencedColumnName = "id")
+  @ManyToOne
+  @JoinColumn(name = "blog_id", referencedColumnName = "id", insertable = false, updatable = false)
+  private BlogEntity blog;
+
+  @Column(name = "blog_id")
   private Long blogId;
 
   public Long getId() {
@@ -57,8 +63,32 @@ public class BookMarkEntity {
     this.blogId = blogId;
   }
 
+  public BookMarkEntity(Long id, Long userId, Long blogId, BlogEntity blog, UserEntity user) {
+    super();
+    this.id = id;
+    this.userId = userId;
+    this.blogId = blogId;
+    this.blog = blog;
+    this.user = user;
+  }
+
   public BookMarkEntity() {
     super();
   }
 
+  public BlogEntity getBlog() {
+    return blog;
+  }
+
+  public void setBlog(BlogEntity blog) {
+    this.blog = blog;
+  }
+
+  public UserEntity getUser() {
+    return user;
+  }
+
+  public void setUser(UserEntity user) {
+    this.user = user;
+  }
 }

@@ -21,8 +21,8 @@ public class BlogEntity {
   @Column(name = "blog_title")
   private String blogTitle;
 
-  @Column(name = "blog_content")
-  private String blogContent;
+  @Column(name = "blog_contents", length = 65555)
+  private String blogContents;
 
   @Column(name = "blog_created_date")
   private Date blogCreatedDate;
@@ -30,23 +30,38 @@ public class BlogEntity {
   @Column(name = "blog_modified_date")
   private Date blogModifiedDate;
 
-  @ManyToOne(targetEntity = UserEntity.class)
-  @JoinColumn(name = "author_id", referencedColumnName = "id")
+  @ManyToOne
+  @JoinColumn(name = "author_id", referencedColumnName = "id", insertable = false, updatable = false)
+  private UserEntity author;
+
+  @Column(name = "author_id")
   private Long authorId;
 
   public BlogEntity() {
     super();
   }
 
-  public BlogEntity(Long id, String blogTitle, String blogContent, Date blogCreatedDate, Date blogModifiedDate,
+  public BlogEntity(Long id, String blogTitle, String blogContents, Date blogCreatedDate, Date blogModifiedDate,
       Long authorId) {
     super();
     this.id = id;
     this.blogTitle = blogTitle;
-    this.blogContent = blogContent;
+    this.blogContents = blogContents;
     this.blogCreatedDate = blogCreatedDate;
     this.blogModifiedDate = blogModifiedDate;
     this.authorId = authorId;
+  }
+
+  public BlogEntity(Long id, String blogTitle, String blogContents, Date blogCreatedDate, Date blogModifiedDate,
+      Long authorId, UserEntity author) {
+    super();
+    this.id = id;
+    this.blogTitle = blogTitle;
+    this.blogContents = blogContents;
+    this.blogCreatedDate = blogCreatedDate;
+    this.blogModifiedDate = blogModifiedDate;
+    this.authorId = authorId;
+    this.author = author;
   }
 
   public Long getId() {
@@ -65,12 +80,12 @@ public class BlogEntity {
     this.blogTitle = blogTitle;
   }
 
-  public String getBlogContent() {
-    return blogContent;
+  public String getBlogContents() {
+    return blogContents;
   }
 
-  public void setBlogContent(String blogContent) {
-    this.blogContent = blogContent;
+  public void setBlogContents(String blogContents) {
+    this.blogContents = blogContents;
   }
 
   public Date getBlogCreatedDate() {
@@ -95,6 +110,14 @@ public class BlogEntity {
 
   public void setAuthorId(Long authorId) {
     this.authorId = authorId;
+  }
+
+  public UserEntity getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(UserEntity author) {
+    this.author = author;
   }
 
 }
